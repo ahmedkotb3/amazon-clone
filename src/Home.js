@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { auth } from "./firebase";
 import "./Home.css";
 import Product from "./Product";
+import { useStateValue } from "./StateProvider";
 
 function Home() {
+  const [{}, dispatch] = useStateValue();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      console.log("the user is ", authUser);
+      if (authUser) {
+        dispatch({
+          type: "SET_USER",
+          user: authUser,
+        });
+      } else {
+        dispatch({
+          type: "SET_USER",
+          user: null,
+        });
+      }
+    });
+  }, []);
   return (
     <div className="home">
       <div className="home__container">
@@ -11,7 +31,7 @@ function Home() {
           src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg"
         />
         <div className="home__row">
-        <Product
+          <Product
             id="12321341"
             title="The Lean Startup: How Constant Innovation Creates Radically Successful Businesses Paperback"
             price={11.96}
