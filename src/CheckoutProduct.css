@@ -1,10 +1,10 @@
-.checkoutProduct{
+.checkoutProduct {
     display: flex;
     margin: 20px 0;
 
 }
 
-.checkoutProduct__info{
+.checkoutProduct__info {
     padding-left: 20px;
 }
 
@@ -16,11 +16,17 @@
     color: #111;
 }
 
-.checkoutProduct__rating{
+.checkoutProduct__rating {
     display: flex;
 }
 
-.star{
+.checkoutProduct__image {
+    object-fit: contain;
+    width: 180px;
+    height: 180px;
+}
+
+.star {
     color: #f7ff00;
 }
 
@@ -28,4 +34,3 @@
     font-size: 17px;
     font-weight: 800;
 }
-
